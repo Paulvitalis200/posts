@@ -1,3 +1,32 @@
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
+async function postData(event) {
+    event.preventDefault();
+
+    title = document.getElementById('title').value;
+    body = document.getElementById('body').value;
+    userId = document.getElementById('userId');
+
+    const request = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            body: body,
+            userId: userId
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8', 
+        }
+    });
+    const data = await request.json();
+    console.log(data);
+    document.getElementById("form").reset();
+}
+
+const form = document.getElementById('form');
+form.addEventListener('submit', postData);
+
+
 
 // Create a form that 
 // Has - title, body and userId - number
